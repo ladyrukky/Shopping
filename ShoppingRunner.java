@@ -3,6 +3,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class ShoppingRunner {
 	
 	//method to find the least expensive item in the store
@@ -168,29 +170,31 @@ public class ShoppingRunner {
 		
 		//**please download walmartShopList.csv and replace the file path information
 		//read PRODUCT information from a CSV file and place in an array
-		Scanner prod = new Scanner(new File("C:\\Users\\Ruqayyah\\normalJava\\SustainableShopping\\walmartShopList.csv"));
-		prod.useDelimiter(",|\r?\n");
-		
+		Scanner prod = new Scanner(new File("walmartShopList.csv"));
+		prod.useDelimiter(",|\\||\\r|\\n");
+		prod.nextLine();
 		while(prod.hasNextLine()) {
-			product1 = new Product(prod.next(), prod.next(), prod.next());
+			System.out.println("Inside the while looop");
+			String[] line = prod.nextLine().split(",");
+			product1 = new Product(line[0], line[1], line[2]);
 			allProd.add(product1);
-		}
+		} 
 		
 		prod.close();
 		
-		//read CUSTOMER information from a CSV file and place in an array
-		URL uC = new URL("https://raw.githubusercontent.com/ladyrukky/Shopping/main/customerData.csv");
-		Scanner customer = new Scanner(uC.openStream());
-		customer.useDelimiter(",|\r?\n");
-		
+		Scanner customer = new Scanner(new File("customerData.csv"));
+		customer.useDelimiter(",");
 		while(customer.hasNextLine()) {
-			customer1 = new Customer(customer.nextInt(), customer.next(), customer.nextLong(), customer.next(), customer.nextBoolean());
+			String[] line = customer.nextLine().split(",");
+			System.out.println(line);
+			customer1 = new Customer(Integer.parseInt(line[0]), line[1], Long.parseLong(line[2]), line[3], Boolean.parseBoolean(line[4]));
 			allCustomers.add(customer1);
-		}
+
+		} 
 		
 		//trying to print information from customer array
-		System.out.println(allCustomers);
-				
+		System.out.println("all customers: " + allCustomers.toString());
+		System.out.println("all products: " + allProd.toString());		
 		customer.close();
 		
 		//create new Store with product and customer information
