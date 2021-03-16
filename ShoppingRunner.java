@@ -1,5 +1,4 @@
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -52,7 +51,7 @@ public class ShoppingRunner {
 		double leastPrice = prices.get(0);
 		String sNewPrice = Double.toString(leastPrice);
 		
-		//placeholders for Product object so it can be initialized
+		// placeholders for Product object so it can be initialized
 		String name = "n";
 		String price = "p";
 		String type = "t";
